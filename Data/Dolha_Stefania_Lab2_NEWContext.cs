@@ -17,5 +17,6 @@ namespace Dolha_Stefania_Lab2_NEW.Data
         public DbSet<Dolha_Stefania_Lab2_NEW.Models.Book> Book { get; set; } = default!;
         public DbSet<Dolha_Stefania_Lab2_NEW.Models.Publisher> Publisher { get; set; } = default!;
         public DbSet<Dolha_Stefania_Lab2_NEW.Models.Author> Author { get; set; } = default!;
+        public DbSet<Dolha_Stefania_Lab2_NEW.Models.Category> Category { get; set; } = default!;
     }
 }

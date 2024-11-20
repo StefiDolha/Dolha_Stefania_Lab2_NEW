@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Dolha_Stefania_Lab2_NEW.Data;
 using Dolha_Stefania_Lab2_NEW.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Dolha_Stefania_Lab2_NEW.Pages.Publishers
 {
@@ -18,12 +19,32 @@ namespace Dolha_Stefania_Lab2_NEW.Pages.Publishers
         {
             _context = context;
         }
+        public IList<Publisher> Publisher { get; set; } = default!;
 
-        public IList<Publisher> Publisher { get;set; } = default!;
-
-        public async Task OnGetAsync()
+        public PublisherIndexData PublisherData { get; set; }
+        public int PublisherID { get; set; }
+        public int BookID { get; set; }
+        public async Task OnGetAsync(int? id, int? bookID)
         {
-            Publisher = await _context.Publisher.ToListAsync();
+            PublisherData = new PublisherIndexData();
+            PublisherData.Publishers = await _context.Publisher
+            .Include(i => i.Books)
+            .ThenInclude(c => c.Author)
+            .OrderBy(i => i.PublisherName)
+            .ToListAsync();
+            if (id != null)
+            {
+                PublisherID = id.Value;
+                Publisher publisher = PublisherData.Publishers
+                .Where(i => i.ID == id.Value).Single();
+                PublisherData.Books = publisher.Books;
+            }
+
+            /*public async Task OnGetAsync()
+            {
+                Publisher = await _context.Publisher.ToListAsync();
+            }
+        }*/
         }
     }
 }

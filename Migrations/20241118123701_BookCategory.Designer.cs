@@ -4,6 +4,7 @@ using Dolha_Stefania_Lab2_NEW.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dolha_Stefania_Lab2_NEW.Migrations
 {
     [DbContext(typeof(Dolha_Stefania_Lab2_NEWContext))]
-    partial class Dolha_Stefania_Lab2_NEWContextModelSnapshot : ModelSnapshot
+    [Migration("20241118123701_BookCategory")]
+    partial class BookCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
